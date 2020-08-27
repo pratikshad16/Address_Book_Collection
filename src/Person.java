@@ -74,6 +74,9 @@ public class Person {
         this.zip=zip;
         this.phoneNumber=phoneNumber;
     }
+    public Person() {
+        super();
+    }
     public String toString()
     {
         return "First Name:"+firstName+"\tLast Name:"+lastName+"\tAddress:"+address+"\tCity:"+city+"\tState:"+state+"\tZipcode:"+zip+"\tMobile No:"+phoneNumber;
