@@ -13,7 +13,7 @@ public class AddressBookMain {
         long phoneNumber;
         Person information[] = new Person[10];
         while (true) {
-            System.out.println("1.Add contact \n2. Edit a contact");
+            System.out.println("1.Add contact \n2. Edit a contact \n3. Delete a person");
             System.out.println("enter the choice");
             choice = sc.nextInt();
             switch (choice) {
@@ -75,6 +75,16 @@ public class AddressBookMain {
                             System.out.println(information[i]);
                         }
                     }
+                case 3:
+                    System.out.println("enter the name to delete");
+                    firstName=sc.next();
+                    for (int i=0;i<count;i++){
+                        if(information[i]!=null&& information[i].getFirstName().equals(firstName)){
+                            information[i]=null;
+                        }
+                    }
+                    System.out.println("Sucessfully deleted the entry");
+                    break;
             }
         }
     }
