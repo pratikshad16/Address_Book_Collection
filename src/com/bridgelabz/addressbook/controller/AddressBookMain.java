@@ -11,7 +11,7 @@ public class AddressBookMain {
         int choice = 0;
         do {
             System.out.println("Welcome to address Book Program");
-            System.out.println("1.Add contact \n2. Edit a contact \n3. Delete a person \n4. Display the record \n5. Sort the entry \n6. View the address book");
+            System.out.println("1.Add contact \n2. Edit a contact \n3. Delete a person \n4. Display the record \n5. Sort the entry \n6. View the address book \n7. Search a person");
             System.out.println("enter the option");
             int option = sc.nextInt();
             switch (option) {
@@ -36,10 +36,13 @@ public class AddressBookMain {
                     addressBook.view();
                     break;
                 case 7:
+                    addressBook.searchPerson();
+                    break;
+                case 8:
                     System.out.println("enter correct choice");
                     break;
             }
-        } while (choice != 5);
+        } while (choice != 8);
     }
 }
 

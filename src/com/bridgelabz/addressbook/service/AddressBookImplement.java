@@ -1,6 +1,7 @@
 package com.bridgelabz.addressbook.service;
 
 import com.bridgelabz.addressbook.model.Person;
+
 import java.util.stream.Collectors;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -130,16 +131,38 @@ public class AddressBookImplement implements IAddressBook {
             case 1:
                 System.out.println("Enter the city name");
                 String city = sc.next();
-                List<Person> people = list.stream().filter(person1 -> person1.getCity().equalsIgnoreCase(city)).collect(Collectors.toList());
+                List<Person> people = list.stream().filter(person -> person.getCity().equalsIgnoreCase(city)).collect(Collectors.toList());
                 for (Person person : people) {
                     System.out.println(person);
                 }
             case 2:
                 System.out.println("Enter the state name");
                 String state = sc.next();
-                people = list.stream().filter(person1 -> person1.getState().equalsIgnoreCase(state)).collect(Collectors.toList());
+                people = list.stream().filter(person -> person.getState().equalsIgnoreCase(state)).collect(Collectors.toList());
                 for (Person person : people) {
                     System.out.println(person);
+                }
+
+        }
+    }
+
+    public void searchPerson() {
+        System.out.println("1.Search In city \n2. Search In state");
+        System.out.println("Enter your choice for searching");
+        int choice = sc.nextInt();
+        System.out.println("Enter the first name");
+        String firstName = sc.next();
+        switch (choice) {
+            case 1:
+
+                List<Person> people = list.stream().filter(person -> person.getFirstName().equalsIgnoreCase(firstName)).collect(Collectors.toList());
+                for (Person person : people) {
+                    System.out.println(person.getFirstName() + "---->" + person.getCity());
+                }
+            case 2:
+                people = list.stream().filter(person -> person.getFirstName().equalsIgnoreCase(firstName)).collect(Collectors.toList());
+                for (Person person : people) {
+                    System.out.println(person.getFirstName() + "---->" + person.getState());
                 }
 
         }

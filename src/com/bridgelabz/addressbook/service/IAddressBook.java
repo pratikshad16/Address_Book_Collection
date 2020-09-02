@@ -7,4 +7,5 @@ public interface IAddressBook {
     void display();
     void sort();
     void view();
+    void searchPerson();
 }
