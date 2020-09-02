@@ -12,7 +12,14 @@ public class AddressBookImplement implements IAddressBook {
 
     public void add() {
         System.out.println("Enter your first name:");
-        String firstName = sc.nextLine();
+        String firstName = sc.next();
+        for(int i=0; i<list.size(); i++)
+        {
+            if(list.get(i).getFirstName().equalsIgnoreCase(firstName)){
+                System.out.println("This name is already exist!! please enter another name");
+                return;
+            }
+        }
         System.out.println("Enter your last name");
         String lastName = sc.next();
         System.out.println("Enter your address");
@@ -73,8 +80,6 @@ public class AddressBookImplement implements IAddressBook {
 
     }
 
-
-    @Override
     public void delete() {
         System.out.println("Enter first name");
         String firstName = sc.next();
