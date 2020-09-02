@@ -3,12 +3,11 @@ package com.bridgelabz.addressbook.model;
 public class Person {
 
     public String firstName;
-    //private String firstName;
     private String lastName;
     private String address;
     private String city;
     private String state;
-    private long zip;
+    private String zip;
     private long phoneNumber;
 
     public String getFirstName()
@@ -51,11 +50,11 @@ public class Person {
     {
         this.state=state;
     }
-    public long getZip()
+    public String getZip()
     {
         return zip;
     }
-    public void setZip(int zip)
+    public void setZip(String zip)
     {
         this.zip=zip;
     }
@@ -67,7 +66,7 @@ public class Person {
     {
         this.phoneNumber=phoneNumber;
     }
-    public Person(String firstName, String lastName, String address, String city, String state, long zip, long phoneNumber)
+    public Person(String firstName, String lastName, String address, String city, String state, String zip, long phoneNumber)
     {
         this.firstName=firstName;
         this.lastName=lastName;

@@ -30,10 +30,10 @@ public class AddressBookImplement implements IAddressBook {
         System.out.println("Enter your state name");
         String state = sc.next();
         System.out.println("Enter your zip code");
-        long zip = sc.nextLong();
+        String zip = sc.next();
         System.out.println("Enter your phone number");
         long phoneNumber = sc.nextLong();
-        Person person = new Person(firstName, lastName, address, city, state, phoneNumber, zip);
+        Person person = new Person(firstName, lastName, address, city, state, zip, phoneNumber);
         list.add(person);
     }
 
@@ -64,7 +64,7 @@ public class AddressBookImplement implements IAddressBook {
                     break;
                 case 4:
                     System.out.println(person.getFirstName() + "Enter new zipcode:");
-                    int zipCode = sc.nextInt();
+                    String zipCode = sc.next();
                     person.setZip(zipCode);
                     break;
                 case 5:
@@ -98,10 +98,27 @@ public class AddressBookImplement implements IAddressBook {
             System.out.println(person);
         }
     }
-    public void sort()
-    {
-        Collections.sort(list,(Firstname1,FirstName2)  -> Firstname1.getFirstName().compareTo(FirstName2.getFirstName()));
-        System.out.println(list);
+    public void sort() {
+        System.out.println("Enter the choice for sorting: 1. Sort by firstName \n2. Sort by city \n3. Sort by state \n4. Sort by Zip ");
+        int choice = sc.nextInt();
+        switch (choice) {
+            case 1:
+                Collections.sort(list, (Firstname1, FirstName2) -> Firstname1.getFirstName().compareTo(FirstName2.getFirstName()));
+                System.out.println(list);
+                break;
+            case 2:
+                Collections.sort(list, (city1, city2) -> city1.getCity().compareTo(city2.getCity()));
+                System.out.println(list);
+                break;
+            case 3:
+                Collections.sort(list, (State1,State2) -> State1.getState().compareTo(State2.getState()));
+                System.out.println(list);
+                break;
+            case 4:
+                Collections.sort(list, (Zip1,Zip2) -> Zip1.getZip().compareTo(Zip2.getZip()));
+                System.out.println(list);
+                break;
+        }
     }
 }
 
