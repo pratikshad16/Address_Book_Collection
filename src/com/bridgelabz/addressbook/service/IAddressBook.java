@@ -6,4 +6,5 @@ public interface IAddressBook {
     void delete();
     void display();
     void sort();
+    void view();
 }

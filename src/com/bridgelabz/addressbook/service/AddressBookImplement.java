@@ -1,7 +1,7 @@
 package com.bridgelabz.addressbook.service;
 
 import com.bridgelabz.addressbook.model.Person;
-
+import java.util.stream.Collectors;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -14,9 +14,8 @@ public class AddressBookImplement implements IAddressBook {
     public void add() {
         System.out.println("Enter your first name:");
         String firstName = sc.next();
-        for(int i=0; i<list.size(); i++)
-        {
-            if(list.get(i).getFirstName().equalsIgnoreCase(firstName)){
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getFirstName().equalsIgnoreCase(firstName)) {
                 System.out.println("This name is already exist!! please enter another name");
                 return;
             }
@@ -98,6 +97,7 @@ public class AddressBookImplement implements IAddressBook {
             System.out.println(person);
         }
     }
+
     public void sort() {
         System.out.println("Enter the choice for sorting: 1. Sort by firstName \n2. Sort by city \n3. Sort by state \n4. Sort by Zip ");
         int choice = sc.nextInt();
@@ -111,14 +111,37 @@ public class AddressBookImplement implements IAddressBook {
                 System.out.println(list);
                 break;
             case 3:
-                Collections.sort(list, (State1,State2) -> State1.getState().compareTo(State2.getState()));
+                Collections.sort(list, (State1, State2) -> State1.getState().compareTo(State2.getState()));
                 System.out.println(list);
                 break;
             case 4:
-                Collections.sort(list, (Zip1,Zip2) -> Zip1.getZip().compareTo(Zip2.getZip()));
+                Collections.sort(list, (Zip1, Zip2) -> Zip1.getZip().compareTo(Zip2.getZip()));
                 System.out.println(list);
                 break;
         }
+
+    }
+
+    public void view() {
+        System.out.println("1.View by city \n2. View by state");
+        System.out.println("Enter your choice for view");
+        int choice = sc.nextInt();
+        switch (choice) {
+            case 1:
+                System.out.println("Enter the city name");
+                String city = sc.next();
+                List<Person> people = list.stream().filter(person1 -> person1.getCity().equalsIgnoreCase(city)).collect(Collectors.toList());
+                for (Person person : people) {
+                    System.out.println(person);
+                }
+            case 2:
+                System.out.println("Enter the state name");
+                String state = sc.next();
+                people = list.stream().filter(person1 -> person1.getState().equalsIgnoreCase(state)).collect(Collectors.toList());
+                for (Person person : people) {
+                    System.out.println(person);
+                }
+
+        }
     }
 }
-
