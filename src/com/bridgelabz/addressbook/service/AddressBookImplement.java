@@ -2,6 +2,7 @@ package com.bridgelabz.addressbook.service;
 
 import com.bridgelabz.addressbook.model.Person;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -96,6 +97,11 @@ public class AddressBookImplement implements IAddressBook {
         for (Person person : list) {
             System.out.println(person);
         }
+    }
+    public void sort()
+    {
+        Collections.sort(list,(Firstname1,FirstName2)  -> Firstname1.getFirstName().compareTo(FirstName2.getFirstName()));
+        System.out.println(list);
     }
 }
 

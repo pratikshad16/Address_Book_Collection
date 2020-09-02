@@ -5,4 +5,5 @@ public interface IAddressBook {
     void edit(String firstName);
     void delete();
     void display();
+    void sort();
 }

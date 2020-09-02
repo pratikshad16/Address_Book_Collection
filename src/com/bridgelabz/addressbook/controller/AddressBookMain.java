@@ -9,7 +9,7 @@ public class AddressBookMain {
         int choice = 0;
         do {
             System.out.println("Welcome to address Book Program");
-            System.out.println("1.Add contact \n2. Edit a contact \n3. Delete a person \n4. Display the record");
+            System.out.println("1.Add contact \n2. Edit a contact \n3. Delete a person \n4. Display the record \n5. Sort the entry");
             System.out.println("enter the option");
             int option = sc.nextInt();
             switch (option) {
@@ -28,6 +28,9 @@ public class AddressBookMain {
                     addressBook.display();
                     break;
                 case 5:
+                    addressBook.sort();
+                    break;
+                case 6:
                     System.out.println("enter correct choice");
                     break;
             }
