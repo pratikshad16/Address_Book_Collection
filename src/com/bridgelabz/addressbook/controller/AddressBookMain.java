@@ -19,7 +19,7 @@ public class AddressBookMain {
                     addressBook.add();
                     break;
                 case 2:
-                    System.out.println("Enter person's first name");
+                   System.out.println("Enter person's first name");
                     String name = sc.next();
                     addressBook.edit(name);
                     break;

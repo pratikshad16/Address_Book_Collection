@@ -1,12 +1,9 @@
 package com.bridgelabz.addressbook.service;
 
 import com.bridgelabz.addressbook.model.Person;
-
+import java.util.*;
 import java.util.stream.Collectors;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.stream.IntStream;
 
 public class AddressBookImplement implements IAddressBook {
     Scanner sc = new Scanner(System.in);
@@ -78,25 +75,17 @@ public class AddressBookImplement implements IAddressBook {
             System.out.println("Editted the entered details successfully");
             break;
         }
-
     }
 
     public void delete() {
         System.out.println("Enter first name");
         String firstName = sc.next();
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getFirstName().equalsIgnoreCase(firstName)) {
-                Person person = list.get(i);
-                list.remove(person);
-            }
-        }
+        IntStream.range(0, list.size()).filter(i -> list.get(i).getFirstName().equalsIgnoreCase(firstName)).mapToObj(i -> list.get(i)).forEach(person -> list.remove(person));
         System.out.println("Entered entry deleted successfully");
     }
 
     public void display() {
-        for (Person person : list) {
-            System.out.println(person);
-        }
+        list.forEach(System.out::println);
     }
 
     public void sort() {
@@ -104,23 +93,22 @@ public class AddressBookImplement implements IAddressBook {
         int choice = sc.nextInt();
         switch (choice) {
             case 1:
-                Collections.sort(list, (Firstname1, FirstName2) -> Firstname1.getFirstName().compareTo(FirstName2.getFirstName()));
+                Collections.sort(list, Comparator.comparing(Person::getFirstName));
                 System.out.println(list);
                 break;
             case 2:
-                Collections.sort(list, (city1, city2) -> city1.getCity().compareTo(city2.getCity()));
+                Collections.sort(list, Comparator.comparing(Person::getCity));
                 System.out.println(list);
                 break;
             case 3:
-                Collections.sort(list, (State1, State2) -> State1.getState().compareTo(State2.getState()));
+                Collections.sort(list, Comparator.comparing(Person::getState));
                 System.out.println(list);
                 break;
             case 4:
-                Collections.sort(list, (Zip1, Zip2) -> Zip1.getZip().compareTo(Zip2.getZip()));
+                Collections.sort(list, Comparator.comparing(Person::getZip));
                 System.out.println(list);
                 break;
         }
-
     }
 
     public void view() {
@@ -132,20 +120,14 @@ public class AddressBookImplement implements IAddressBook {
                 System.out.println("Enter the city name");
                 String city = sc.next();
                 List<Person> people = list.stream().filter(person -> person.getCity().equalsIgnoreCase(city)).collect(Collectors.toList());
-                for (Person person : people) {
-                    System.out.println(person);
-                }
+                people.forEach(System.out::println);
             case 2:
                 System.out.println("Enter the state name");
                 String state = sc.next();
                 people = list.stream().filter(person -> person.getState().equalsIgnoreCase(state)).collect(Collectors.toList());
-                for (Person person : people) {
-                    System.out.println(person);
-                }
-
+                people.forEach(System.out::println);
         }
     }
-
     public void searchPerson() {
         System.out.println("1.Search In city \n2. Search In state");
         System.out.println("Enter your choice for searching");
@@ -154,17 +136,11 @@ public class AddressBookImplement implements IAddressBook {
         String firstName = sc.next();
         switch (choice) {
             case 1:
-
                 List<Person> people = list.stream().filter(person -> person.getFirstName().equalsIgnoreCase(firstName)).collect(Collectors.toList());
-                for (Person person : people) {
-                    System.out.println(person.getFirstName() + "---->" + person.getCity());
-                }
+                people.stream().map(person -> person.getFirstName() + "---->" + person.getCity()).forEach(System.out::println);
             case 2:
                 people = list.stream().filter(person -> person.getFirstName().equalsIgnoreCase(firstName)).collect(Collectors.toList());
-                for (Person person : people) {
-                    System.out.println(person.getFirstName() + "---->" + person.getState());
-                }
-
+                people.stream().map(person -> person.getFirstName() + "---->" + person.getState()).forEach(System.out::println);
         }
     }
 }
